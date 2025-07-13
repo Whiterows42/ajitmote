@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.loading-content {
+  max-width: 800px;
+  width: 90%;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #444444;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.1),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.vms-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-size: 8px;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: headerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes headerGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+.system-info {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.info-line {
+  margin: 5px 0;
+  color: #cccccc;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.connection-status {
+  margin: 30px 0;
+}
+
+.status-messages {
+  margin-bottom: 30px;
+  min-height: 200px;
+}
+
+.status-line {
+  margin: 8px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  animation: typeIn 0.5s ease-out;
+}
+
+.status-line.current {
+  color: #4fc3f7;
+}
+
+@keyframes typeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.prompt {
+  color: #4fc3f7;
+  margin-right: 10px;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(79, 195, 247, 0.5);
+}
+
+.message {
+  color: #ffffff;
+  flex: 1;
+}
+
+.cursor {
+  color: #4fc3f7;
+  margin-left: 5px;
+  font-weight: bold;
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
+}
+
+.cursor.visible {
+  opacity: 1;
+}
+
+.progress-container {
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #333333;
+  border-radius: 4px;
+}
+
+.progress-label {
+  margin-bottom: 15px;
+  color: #4fc3f7;
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(79, 195, 247, 0.5);
+}
+
+.progress-bar {
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #222222;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4fc3f7 0%, #29b6f6 50%, #03a9f4 100%);
+  transition: width 0.3s ease;
+  box-shadow: 
+    0 0 10px rgba(79, 195, 247, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.2);
+  animation: progressGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes progressGlow {
+  0% {
+    box-shadow: 
+      0 0 10px rgba(79, 195, 247, 0.5),
+      inset 0 0 5px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 20px rgba(79, 195, 247, 0.8),
+      inset 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.progress-text {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: #4fc3f7;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(79, 195, 247, 0.5);
+  line-height: 1;
+}
+
+.loading-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.footer-line {
+  margin: 5px 0;
+  color: #999999;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Scanline effect */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(255, 255, 255, 0.01) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  animation: scanline 0.1s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+/* Loading screen background pattern */
+.loading-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  animation: backgroundShift 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes backgroundShift {
+  0% {
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  }
+  100% {
+    background: 
+      radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .loading-content {
+    padding: 20px;
+    max-width: 95%;
+  }
+  
+  .vms-header {
+    font-size: 6px;
+  }
+  
+  .info-line {
+    font-size: 12px;
+  }
+  
+  .status-line {
+    font-size: 12px;
+  }
+  
+  .progress-label {
+    font-size: 12px;
+  }
+  
+  .progress-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-content {
+    padding: 15px;
+  }
+  
+  .vms-header {
+    font-size: 4px;
+  }
+  
+  .info-line {
+    font-size: 10px;
+  }
+  
+  .status-line {
+    font-size: 10px;
+  }
+  
+  .progress-label {
+    font-size: 10px;
+  }
+  
+  .progress-text {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen *,
+  .loading-screen::before,
+  .scanlines {
+    animation: none !important;
+  }
+  
+  .cursor.visible {
+    opacity: 1;
+  }
+} 

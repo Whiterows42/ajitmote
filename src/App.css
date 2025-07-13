@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background: #000000;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  position: relative;
+  animation: fadeInApp 1s ease-in-out;
+}
+
+@keyframes fadeInApp {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.left-panel {
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  border-right: 2px solid #444444;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.left-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.left-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%),
+    linear-gradient(-45deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.card-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: cardSpotlight 4s ease-in-out infinite alternate;
+}
+
+@keyframes cardSpotlight {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.right-panel {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 30, 30, 0.9);
+  position: relative;
+  z-index: 2;
+}
+
+/* Lanyard wrapper styling */
+.lanyard-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.lanyard-wrapper canvas {
+  background: transparent !important;
+}
+
+/* Glowing border effect */
+.left-panel {
+  box-shadow: 
+    inset 0 0 40px rgba(255, 255, 255, 0.08),
+    0 0 25px rgba(255, 255, 255, 0.15),
+    inset 0 0 80px rgba(255, 255, 255, 0.03);
+}
+
+.right-panel {
+  box-shadow: 
+    inset 0 0 30px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .left-panel {
+    flex: 0.4;
+    border-right: none;
+    border-bottom: 2px solid #666666;
+  }
+  
+  .right-panel {
+    flex: 0.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .left-panel {
+    flex: 0.35;
+  }
+  
+  .right-panel {
+    flex: 0.65;
+  }
+}
+
+/* Hover effects */
+.left-panel:hover {
+  box-shadow: 
+    inset 0 0 60px rgba(255, 255, 255, 0.12),
+    0 0 35px rgba(255, 255, 255, 0.25),
+    inset 0 0 100px rgba(255, 255, 255, 0.05);
+}
+
+.right-panel:hover {
+  box-shadow: 
+    inset 0 0 50px rgba(255, 255, 255, 0.15),
+    0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Subtle animation for the panels */
+.left-panel {
+  animation: leftPanelGlow 6s ease-in-out infinite alternate;
+}
+
+.right-panel {
+  animation: rightPanelGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes leftPanelGlow {
+  0% {
+    box-shadow: 
+      inset 0 0 40px rgba(255, 255, 255, 0.08),
+      0 0 25px rgba(255, 255, 255, 0.15),
+      inset 0 0 80px rgba(255, 255, 255, 0.03);
+  }
+  100% {
+    box-shadow: 
+      inset 0 0 60px rgba(255, 255, 255, 0.12),
+      0 0 35px rgba(255, 255, 255, 0.25),
+      inset 0 0 100px rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes rightPanelGlow {
+  0% {
+    box-shadow: 
+      inset 0 0 30px rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 
+      inset 0 0 40px rgba(255, 255, 255, 0.15),
+      0 0 25px rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* Background pattern */
+.app-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 1;
+  animation: backgroundPattern 10s linear infinite;
+}
+
+@keyframes backgroundPattern {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+/* Loading state */
+.app-container.loading {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app-container {
+    background: #000000;
+  }
+  
+  .left-panel,
+  .right-panel {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  
+  .left-panel {
+    box-shadow: 
+      inset 0 0 30px rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  
+  .right-panel {
+    box-shadow: 
+      inset 0 0 30px rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .app-container::after,
+  .left-panel,
+  .right-panel,
+  .card-container::before,
+  .circular-text {
+    animation: none;
+  }
+  
+  .app-container::before {
+    animation: none;
+  }
+}
+
+/* Circular text at bottom left */
+.circular-text {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 120px;
+  height: 120px;
+  animation: rotate 20s linear infinite;
+  z-index: 3;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.circular-text:hover {
+  opacity: 1;
+  animation-duration: 10s;
+}
+
+.circular-text svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.circular-text text {
+  fill: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsive circular text */
+@media (max-width: 768px) {
+  .circular-text {
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .circular-text text {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circular-text {
+    width: 60px;
+    height: 60px;
+    bottom: 15px;
+    left: 15px;
+  }
+  
+  .circular-text text {
+    font-size: 6px;
+    letter-spacing: 0.3px;
+  }
+}
+
+

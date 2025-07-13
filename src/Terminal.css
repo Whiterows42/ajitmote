@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+.terminal-container {
+  width: 100%;
+  height: 100vh;
+  background: #1e1e1e;
+  border: 2px solid #444444;
+  border-radius: 8px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: #ffffff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  animation: terminalGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminalGlow {
+  0% {
+    box-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.5),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    box-shadow: 
+      0 0 30px rgba(0, 0, 0, 0.7),
+      inset 0 0 30px rgba(255, 255, 255, 0.08);
+  }
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  background: #2d2d2d;
+  padding: 8px 16px;
+  border-bottom: 1px solid #444444;
+  position: relative;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.terminal-button.close {
+  background: #ff5555;
+}
+
+.terminal-button.minimize {
+  background: #ffff55;
+}
+
+.terminal-button.maximize {
+  background: #55ff55;
+}
+
+.terminal-button:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px currentColor;
+}
+
+.terminal-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #cccccc;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.terminal-content {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  padding: 16px;
+  background: #1e1e1e;
+  position: relative;
+}
+
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: #777777;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.4;
+  animation: textAppear 0.3s ease-out;
+}
+
+@keyframes textAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.terminal-line.input {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.terminal-line.output {
+  color: #e0e0e0;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.terminal-line.error {
+  color: #ff6b6b;
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+.terminal-line.typing {
+  color: #ffeb3b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.typing-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-input-container {
+  position: relative;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  background: #1e1e1e;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-prompt {
+  color: #4fc3f7;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(79, 195, 247, 0.5);
+  white-space: nowrap;
+}
+
+.input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  padding: 0 8px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.terminal-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.ghost-text {
+  position: absolute;
+  left: 8px;
+  color: #ffffff;
+  opacity: 0.4;
+  font-family: inherit;
+  font-size: inherit;
+  pointer-events: none;
+  z-index: 1;
+  animation: ghostGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes ghostGlow {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.terminal-cursor {
+  color: #ffffff;
+  animation: blink 1s infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Scrollbar styling for Firefox */
+.terminal-content {
+  scrollbar-width: thin;
+  scrollbar-color: #555555 #2d2d2d;
+}
+
+/* Subtle background pattern */
+.terminal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.terminal-content,
+.terminal-header {
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle scanline effect */
+.terminal-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  animation: scanline 0.15s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+/* Hover effects */
+.terminal-container:hover {
+  border-color: #666666;
+  box-shadow: 
+    0 0 30px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .terminal-container {
+    border-radius: 0;
+    height: 100vh;
+  }
+  
+  .terminal-content {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .terminal-header {
+    padding: 6px 12px;
+  }
+  
+  .terminal-title {
+    font-size: 12px;
+  }
+}
+
+/* Enhanced focus states */
+.terminal-input:focus {
+  outline: none;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .terminal-container {
+    border-color: #ffffff;
+    color: #ffffff;
+    background: #000000;
+  }
+  
+  .terminal-header {
+    background: #000000;
+  }
+  
+  .terminal-content {
+    background: #000000;
+  }
+  
+  .terminal-line.input,
+  .terminal-line.output,
+  .terminal-prompt,
+  .terminal-input,
+  .terminal-cursor {
+    color: #ffffff;
+    text-shadow: none;
+  }
+  
+  .ghost-text {
+    color: #ffffff;
+    opacity: 0.5;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-container,
+  .terminal-container::after,
+  .typing-cursor,
+  .terminal-cursor,
+  .ghost-text {
+    animation: none;
+  }
+} 
